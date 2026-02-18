@@ -8,6 +8,10 @@ interface BookmarkCardProps {
   onDelete: (id: string) => void;
 }
 
+/**
+ * Individual bookmark card component
+ * Displays bookmark info with edit/delete actions
+ */
 export default function BookmarkCard({ bookmark, onDelete }: BookmarkCardProps) {
   const [deleting, setDeleting] = useState(false);
 
@@ -50,44 +54,44 @@ export default function BookmarkCard({ bookmark, onDelete }: BookmarkCardProps) 
   };
 
   return (
-    <div className="animate-fadeIn bg-white/70 backdrop-blur-xl border border-slate-200/50 rounded-xl p-5 hover:shadow-lg transition-all duration-300 flex items-start justify-between gap-4 group hover:border-blue-200/50">
+    <div className="bg-zinc-900/50 backdrop-blur-xl border border-zinc-800/50 rounded-2xl p-6 hover:border-zinc-700/50 hover:shadow-xl hover:shadow-indigo-500/5 transition-all flex items-start justify-between gap-5 group">
       <div className="flex-1 min-w-0">
         {/* Title */}
-        <h3 className="font-bold text-slate-900 mb-2 text-base truncate group-hover:text-blue-600 transition-colors duration-300">
+        <h3 className="font-bold text-zinc-100 mb-4 text-lg truncate">
           {bookmark.title}
         </h3>
 
-        {/* URL and Domain */}
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-xs font-bold text-blue-600 bg-blue-50/80 backdrop-blur-sm px-3 py-1 rounded-full border border-blue-200/50">
+        {/* Domain Badge */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/20">
             {getDomain(bookmark.url)}
           </span>
         </div>
 
-        {/* Full URL (truncated) */}
+        {/* URL */}
         <a
           href={bookmark.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-700 text-sm truncate block mb-3 hover:underline font-medium transition-colors duration-300"
+          className="text-zinc-400 hover:text-indigo-400 text-sm truncate block mb-4 hover:underline transition-colors"
           title={bookmark.url}
         >
           {bookmark.url}
         </a>
 
         {/* Date */}
-        <p className="text-xs text-slate-500 font-medium">
+        <p className="text-xs text-zinc-500">
           {formatDate(bookmark.created_at)}
         </p>
       </div>
 
       {/* Action Buttons */}
-      <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+      <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
         <a
           href={bookmark.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-2 text-blue-500 hover:bg-blue-50/80 rounded-lg transition-all duration-300 text-sm font-bold active:scale-95"
+          className="px-3 py-2 text-indigo-400 hover:bg-indigo-500/10 rounded-xl transition-all text-sm border border-transparent hover:border-indigo-500/20"
           title="Open link"
         >
           🔗
@@ -95,7 +99,7 @@ export default function BookmarkCard({ bookmark, onDelete }: BookmarkCardProps) 
         <button
           onClick={handleDelete}
           disabled={deleting}
-          className="px-3 py-2 text-red-500 hover:bg-red-50/80 rounded-lg transition-all duration-300 text-sm font-bold disabled:opacity-50 active:scale-95"
+          className="px-3 py-2 text-red-400 hover:bg-red-500/10 rounded-xl transition-all text-sm disabled:opacity-50 border border-transparent hover:border-red-500/20"
           title="Delete bookmark"
         >
           {deleting ? '⏳' : '🗑️'}

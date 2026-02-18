@@ -8,6 +8,10 @@ interface BookmarkFormProps {
   userId: string;
 }
 
+/**
+ * Form component for adding new bookmarks
+ * Validates URL format and saves to Supabase
+ */
 export default function BookmarkForm({ onSuccess, userId }: BookmarkFormProps) {
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
@@ -71,18 +75,14 @@ export default function BookmarkForm({ onSuccess, userId }: BookmarkFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white/80 backdrop-blur-xl rounded-2xl shadow-lg border border-slate-200/50 p-8 mb-6 hover:shadow-2xl transition-all duration-300 animate-fadeIn">
-      <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <span className="text-2xl">✨</span>
-        <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-          Add Bookmark
-        </span>
+    <form onSubmit={handleSubmit} className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl border border-zinc-800/50 p-8 mb-10 shadow-xl">
+      <h2 className="text-2xl font-bold mb-6 text-zinc-100 flex items-center gap-3">
+        <span className="text-2xl">📂</span>
+        Add Bookmark
       </h2>
 
-      
-
       {error && (
-        <div className="mb-4 p-4 bg-red-50/80 border border-red-200/50 text-red-700 rounded-xl text-sm backdrop-blur-sm animate-slideDown">
+        <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl text-sm">
           ⚠️ {error}
         </div>
       )}
@@ -90,24 +90,24 @@ export default function BookmarkForm({ onSuccess, userId }: BookmarkFormProps) {
       <div className="space-y-5">
         {/* Title Input */}
         <div>
-          <label htmlFor="title" className="block text-sm font-semibold text-slate-700 mb-2">
-            📝 Bookmark Title
+          <label htmlFor="title" className="block text-sm font-semibold text-zinc-300 mb-2.5">
+            Bookmark Title
           </label>
           <input
             id="title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="e.g., Google Search, GitHub, Figma..."
-            className="w-full px-4 py-3 border border-slate-200/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 bg-white/50 hover:bg-white/80 focus:bg-white placeholder-slate-400 font-medium"
+            placeholder="e.g., Google, GitHub, Figma..."
+            className="w-full px-4 py-3.5 bg-zinc-800/50 border border-zinc-700/50 rounded-xl text-zinc-100 placeholder-zinc-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 outline-none transition-all"
             disabled={loading}
           />
         </div>
 
         {/* URL Input */}
         <div>
-          <label htmlFor="url" className="block text-sm font-semibold text-slate-700 mb-2">
-            🔗 Website URL
+          <label htmlFor="url" className="block text-sm font-semibold text-zinc-300 mb-2.5">
+            Website URL
           </label>
           <input
             id="url"
@@ -115,7 +115,7 @@ export default function BookmarkForm({ onSuccess, userId }: BookmarkFormProps) {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://example.com"
-            className="w-full px-4 py-3 border border-slate-200/50 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 bg-white/50 hover:bg-white/80 focus:bg-white placeholder-slate-400 font-medium"
+            className="w-full px-4 py-3.5 bg-zinc-800/50 border border-zinc-700/50 rounded-xl text-zinc-100 placeholder-zinc-500 focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 outline-none transition-all"
             disabled={loading}
           />
         </div>
@@ -124,7 +124,7 @@ export default function BookmarkForm({ onSuccess, userId }: BookmarkFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl font-bold hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl active:scale-95"
+          className="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white rounded-xl font-semibold shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-2"
         >
           {loading ? (
             <span className="flex items-center justify-center gap-2">

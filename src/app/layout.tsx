@@ -4,12 +4,6 @@ import "@/styles/globals.css";
 import { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 
-// This would be separate in a server component but we need client for auth
-// export const metadata: Metadata = {
-//   title: "Smart Bookmark App",
-//   description: "A simple, fast, and secure bookmark manager",
-// };
-
 export default function RootLayout({
   children,
 }: {
@@ -26,9 +20,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>
+      <body className="bg-zinc-950 min-h-screen">
         <Navbar />
-        <main className="min-h-screen">
+        <main className="relative">
           {children}
         </main>
       </body>

@@ -9,6 +9,10 @@ interface BookmarkListProps {
   refreshTrigger: number;
 }
 
+/**
+ * Bookmark list component with real-time updates
+ * Fetches and displays all bookmarks for the current user
+ */
 export default function BookmarkList({ userId, refreshTrigger }: BookmarkListProps) {
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([]);
   const [loading, setLoading] = useState(true);
@@ -100,11 +104,11 @@ export default function BookmarkList({ userId, refreshTrigger }: BookmarkListPro
 
   if (loading) {
     return (
-      <div className="space-y-3">
+      <div className="space-y-4">
         {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="h-24 bg-gray-200 rounded-lg animate-pulse"
+            className="h-32 bg-zinc-900/30 rounded-2xl animate-pulse border border-zinc-800/50"
           />
         ))}
       </div>
@@ -113,7 +117,7 @@ export default function BookmarkList({ userId, refreshTrigger }: BookmarkListPro
 
   if (error) {
     return (
-      <div className="p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+      <div className="p-4 bg-red-500/10 border border-red-500/30 text-red-400 rounded-xl">
         {error}
       </div>
     );
@@ -121,27 +125,27 @@ export default function BookmarkList({ userId, refreshTrigger }: BookmarkListPro
 
   if (bookmarks.length === 0) {
     return (
-      <div className="text-center py-16 animate-fadeIn">
-        <p className="text-6xl mb-6">🔖</p>
-        <p className="text-2xl font-bold text-slate-900 mb-2">No bookmarks yet</p>
-        <p className="text-slate-600 text-lg">
-          Add your first bookmark from the form on the left to get started!
+      <div className="text-center py-20">
+        <p className="text-6xl mb-4">🔖</p>
+        <p className="text-2xl font-bold text-zinc-200 mb-2">No bookmarks yet</p>
+        <p className="text-zinc-500">
+          Add your first bookmark using the form above!
         </p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-5">
-      <div className="flex items-center gap-3 mb-6">
-        <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+    <div className="space-y-6">
+      <div className="flex items-center gap-3 mb-8">
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
           📚 Your Bookmarks
         </h2>
-        <span className="px-4 py-2 bg-blue-100/80 text-blue-700 rounded-full text-sm font-bold border border-blue-200/50">
+        <span className="px-3 py-1.5 bg-indigo-500/10 text-indigo-400 rounded-full text-sm font-semibold border border-indigo-500/20">
           {bookmarks.length}
         </span>
       </div>
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-5">
         {bookmarks.map((bookmark) => (
           <BookmarkCard
             key={bookmark.id}

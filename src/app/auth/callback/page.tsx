@@ -51,10 +51,10 @@ export default function AuthCallbackPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <div className="animate-spin text-4xl mb-4">⏳</div>
-        <p className="text-gray-600 font-medium">Completing sign in...</p>
+        <div className="animate-spin text-5xl mb-4">⏳</div>
+        <p className="text-zinc-400 font-medium">Completing sign in...</p>
       </div>
     </div>
   );

@@ -56,7 +56,7 @@ export default function HomePage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin text-4xl mb-4">⏳</div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-zinc-400">Loading...</p>
         </div>
       </div>
     );
@@ -67,39 +67,33 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-          {/* Form on Left */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-[calc(64px+2rem)]">
-              <BookmarkForm
-                userId={user.id}
-                onSuccess={handleBookmarkAdded}
-              />
-            </div>
-          </div>
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center py-8">
+      {/* Background gradient orbs */}
+      <div className="absolute top-20 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl" />
 
-          {/* Header and Bookmarks List in Middle */}
-          <div className="lg:col-span-4">
-            {/* Header */}
-            <div className="mb-12 animate-slideDown">
-              <h1 className="text-5xl font-bold mb-3 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Welcome back!
-                </span>
-                <span className="text-5xl">👋</span>
-              </h1>
-              <p className="text-xl text-slate-600 font-medium">
-                Manage all your bookmarks in one beautiful place
-              </p>
-            </div>
-
-            {/* Bookmarks List */}
-            <BookmarkList userId={user.id} refreshTrigger={refreshTrigger} />
-          </div>
+      <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl font-bold mb-3 flex items-center justify-center gap-3">
+            <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+              Welcome!
+            </span>
+            <span className="text-4xl">👋</span>
+          </h1>
+          <p className="text-zinc-400 text-lg">
+            Manage all your bookmarks in one place
+          </p>
         </div>
+
+        {/* Add Bookmark Form */}
+        <BookmarkForm
+          userId={user.id}
+          onSuccess={handleBookmarkAdded}
+        />
+
+        {/* Bookmarks List */}
+        <BookmarkList userId={user.id} refreshTrigger={refreshTrigger} />
       </div>
     </div>
   );
